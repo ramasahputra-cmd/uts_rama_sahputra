@@ -1,7 +1,7 @@
 # UTS Pemrograman Berbasis Web
 
 ## 👨‍💻 Deskripsi
-UTS ini merupakan bagian dari praktikum mata kuliah **Pemrograman Berbasis Web (Semester 3)**.  
+UTS ini merupakan bagian dari praktikum mata kuliah **Pemrograman Web**.  
 Mahasiswa diminta membuat halaman web sederhana menggunakan **HTML**, **CSS**, dan **JavaScript** dengan alur kerja GitHub.
 
 ## 📋 Langkah Pengerjaan
