@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UTS Pemrograman Web — Halaman Sederhana</title>
+  <style>
+    :root{--bg:#0f172a;--card:#111827;--line:#1f2937;--text:#e5e7eb;--muted:#9ca3af;--accent:#3b82f6}
+    *{box-sizing:border-box} html,body{margin:0;padding:0}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:radial-gradient(1200px 600px at 10% 10%,#0b1022 0%,#0f172a 45%);color:var(--text)}
+    .container{width:min(1100px,92%);margin:0 auto}
+    header{position:sticky;top:0;background:rgba(15,23,42,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    .head{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .brand{font-weight:700}
+    nav a{color:var(--text);text-decoration:none;margin-left:12px;opacity:.9}
+    nav a:hover{opacity:1;text-decoration:underline}
+    .card{background:linear-gradient(180deg,#111827,#0b1220);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:0 10px 28px rgba(0,0,0,.25)}
+    main{margin-top:18px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0 50px}
+    .btn{padding:9px 14px;border:none;border-radius:8px;background:var(--accent);color:#fff;cursor:pointer}
+    .nama{color:var(--accent);text-decoration:underline dotted;text-underline-offset:4px}
+    footer{border-top:1px solid var(--line);background:#0b1020;margin-top:30px}
+    .foot{padding:22px 0;color:var(--muted);font-size:.95rem}
+    @media (max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+    @media (max-width:620px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container head">
+      <div class="brand">MySimpleSite</div>
+      <nav><a href="#beranda">Beranda</a><a href="#fitur">Fitur</a><a href="#kontak">Kontak</a></nav>
+    </div>
+  </header>
+
+  <main id="beranda" class="container">
+    <section class="card" style="text-align:center">
+      <h2>Halo, <span id="nama-output" class="nama">Pengunjung</span>! 👋</h2>
+      <p>Selamat datang di contoh website sederhana untuk UTS Pemrograman Web.</p>
+      <button id="ubah-nama" class="btn">Ubah Nama</button>
+    </section>
+
+    <section id="fitur" class="grid">
+      <article class="card"><h3>HTML</h3><p>Struktur semantik: <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>.</p></article>
+      <article class="card"><h3>CSS</h3><p>Tampilan responsif sederhana.</p></article>
+      <article class="card"><h3>JavaScript</h3><p>Alert sapaan, prompt nama, dan update DOM.</p></article>
+    </section>
+  </main>
+
+  <footer id="kontak">
+    <div class="container foot">
+      © <span id="year"></span> MySimpleSite — Dibuat untuk UTS Pemrograman Web. Email: you@example.com
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      alert('Selamat datang di website contoh UTS!'); // 1) alert sapaan otomatis
+
+      // 2) prompt nama + simpan + tampilkan (DOM)
+      const KEY='namaPengguna';
+      let nama=localStorage.getItem(KEY);
+      if(!nama){ nama=prompt('Silakan masukkan nama Anda:'); if(nama!==null) localStorage.setItem(KEY,nama); }
+
+      const out=document.getElementById('nama-output');
+      const btn=document.getElementById('ubah-nama');
+      const year=document.getElementById('year');
+
+      function setNama(n){ out.textContent=(n&&n.trim())?n.trim():'Pengunjung'; }
+      setNama(localStorage.getItem(KEY));
+
+      btn.addEventListener('click',()=>{
+        const baru=prompt('Masukkan nama baru:');
+        if(baru!==null){ localStorage.setItem(KEY,baru); setNama(baru); }
+      });
+
+      year.textContent=new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
